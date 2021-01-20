@@ -25,3 +25,4 @@ def verify_entrypoints():
         response = f(**args)
         if response is None:
             failing_entrypoints.append(response.get('selfLink', response['code']))
+    return failing_entrypoints
