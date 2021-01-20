@@ -4,6 +4,7 @@ from entrypoints import ENTRYPOINTS_TESTING_CALLS
 
 
 def verify_indicators():
+    '''Verify all available indicator codes using the istacpy lite module'''
     failing_entrypoints = []
     all_indicators = indicators.get_indicators()
     for indicator_code, _ in all_indicators:
@@ -18,6 +19,7 @@ def verify_indicators():
 
 
 def verify_entrypoints():
+    '''Verify a bunch of entrypoints using different arguments on each call'''
     failing_entrypoints = []
     for item in ENTRYPOINTS_TESTING_CALLS:
         f = item[0]
