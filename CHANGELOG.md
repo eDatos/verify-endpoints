@@ -2,6 +2,10 @@
 
 Versions follow [Semantic Versioning](https://semver.org/) (`<major>.<minor>.<patch>`).
 
+## verify-endpoints 0.3.2 (2021-03-05)
+
+- Bug fixes.
+
 ## verify-endpoints 0.3.1 (2021-02-02)
 
 - Bug fixes.
