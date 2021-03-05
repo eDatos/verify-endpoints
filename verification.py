@@ -8,8 +8,8 @@ def verify_indicators():
     failing_entrypoints = []
     all_indicators = indicators.get_indicators()
     for indicator_code, _ in all_indicators:
-        indicator = indicators.get_indicator(indicator_code)
         try:
+            indicator = indicators.get_indicator(indicator_code)
             indicator.get_data()
         except Exception:
             failing_entrypoints.append(
