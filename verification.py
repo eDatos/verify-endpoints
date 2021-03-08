@@ -24,7 +24,8 @@ def verify_entrypoints():
     for item in ENTRYPOINTS_TESTING_CALLS:
         f = item[0]
         args = item[1]
-        response = f(**args)
-        if response is None:
-            failing_entrypoints.append(response.get('selfLink', response['code']))
+        try:
+            f(**args)
+        except Exception as err:
+            failing_entrypoints.append(err.requested_url)
     return failing_entrypoints
