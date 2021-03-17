@@ -2,6 +2,10 @@
 
 Versions follow [Semantic Versioning](https://semver.org/) (`<major>.<minor>.<patch>`).
 
+## verify-endpoints 0.3.4 (2021-03-17)
+
+- Change license to AGPL-3.0.
+
 ## verify-endpoints 0.3.3 (2021-03-08)
 
 - Fix error handling on entrypoints query.
