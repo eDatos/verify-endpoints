@@ -1,13 +1,18 @@
-import smtplib
-from email.message import EmailMessage
+from sendgrify.core import SendGrid
 
 import config
+
+sendgrid_handler = SendGrid(
+    api_key=config.SENDGRID_APIKEY,
+    from_addr=config.NOTIFICATION_FROM_ADDR,
+    from_name=config.NOTIFICATION_FROM_NAME,
+)
 
 
 def notify(failing_entrypoints):
     failing_entrypoints = '\n'.join(failing_entrypoints)
     subject = '⚠️ Aviso sobre API entrypoints'
-    content = f'''Hola,
+    msg = f'''Hola,
 
 Los siguientes API entrypoints parecen estar dando problemas:
 
@@ -16,14 +21,4 @@ Los siguientes API entrypoints parecen estar dando problemas:
 Saludos,
 El equipo de informática.
 '''
-
-    msg = EmailMessage()
-    msg.set_content(content)
-    msg['Subject'] = subject
-    msg['From'] = config.NOTIFICATION_FROM_ADDR
-    msg['To'] = config.NOTIFICATION_TO_ADDRS
-
-    s = smtplib.SMTP(config.SMTP_SERVER, port=config.SMTP_PORT)
-    s.login(config.SMTP_USERNAME, config.SMTP_PASSWORD)
-    s.send_message(msg)
-    s.quit()
+    sendgrid_handler.send(to=config.NOTIFICATION_TO_ADDRS, subject=subject, msg=msg)
